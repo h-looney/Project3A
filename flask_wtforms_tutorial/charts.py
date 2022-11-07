@@ -7,6 +7,7 @@ This is where you should add your code to function query the api
 
 import pygal
 import requests
+from flask import flash
 from datetime import timedelta
 from .helpers import *
 
@@ -51,7 +52,11 @@ class StockDataChart:
     def build(self, chart):
         x_labels = []
         points = {'OPEN': [], 'HIGH': [], 'LOW': [], 'CLOSE': []}
-        stock_data = self.data[TIME_SERIES[self.time_series]['key']]
+        try:
+            stock_data = self.data[TIME_SERIES[self.time_series]['key']]
+        except KeyError:
+            flash('Something went wrong while getting the stock data.')
+            return chart
         dt = self.start_date
         while dt <= self.end_date:
             date_format = DF_INTRADAY if self.time_series == 'Intraday' else DF_DEFAULT
