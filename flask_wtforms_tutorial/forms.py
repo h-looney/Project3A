@@ -25,17 +25,17 @@ class StockForm(FlaskForm):
 
     chart_type = SelectField("Select Chart Type",[DataRequired()],
         choices=[
-            ("1", "1. Bar"),
-            ("2", "2. Line"),
+            ("Bar", "1. Bar"),
+            ("Line", "2. Line"),
         ],
     )
 
     time_series = SelectField("Select Time Series",[DataRequired()],
         choices=[
-            ("1", "1. Intraday"),
-            ("2", "2. Daily"),
-            ("3", "3. Weekly"),
-            ("4", "4. Monthly"),
+            ("Intraday", "1. Intraday"),
+            ("Daily", "2. Daily"),
+            ("Weekly", "3. Weekly"),
+            ("Monthly", "4. Monthly"),
         ],
     )
 
